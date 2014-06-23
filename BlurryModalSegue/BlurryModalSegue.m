@@ -85,6 +85,7 @@ static UIImageOrientation ImageOrientationFromInterfaceOrientation(UIInterfaceOr
     destination.view.clipsToBounds = YES;
     
     UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:snapshot];
+	backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
 
     CGRect frame;
     switch (destination.modalTransitionStyle) {
@@ -99,7 +100,8 @@ static UIImageOrientation ImageOrientationFromInterfaceOrientation(UIInterfaceOr
             break;
     }
     backgroundImageView.frame = frame;
-    
+	backgroundImageView.autoresizingMask = 0xFFFFFFFF;
+
     [destination.view addSubview:backgroundImageView];
     [destination.view sendSubviewToBack:backgroundImageView];
     
